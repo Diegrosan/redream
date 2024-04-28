@@ -431,7 +431,6 @@ struct pvr *pvr_create(struct dreamcast *dc) {
 }
 
 REG_W32(pvr_cb, SOFTRESET) {
-  struct pvr *pvr = dc->pvr;
   struct ta *ta = dc->ta;
 
   if (!(value & 0x1)) {
@@ -457,7 +456,6 @@ REG_W32(pvr_cb, STARTRENDER) {
 }
 
 REG_W32(pvr_cb, TA_LIST_INIT) {
-  struct pvr *pvr = dc->pvr;
   struct ta *ta = dc->ta;
 
   if (!(value & 0x80000000)) {
@@ -467,8 +465,7 @@ REG_W32(pvr_cb, TA_LIST_INIT) {
   ta_list_init(ta);
 }
 
-REG_W32(pvr_cb, TA_LIST_CONT) {
-  struct pvr *pvr = dc->pvr;
+REG_W32(pvr_cb, TA_LIST_CONT) { 
   struct ta *ta = dc->ta;
 
   if (!(value & 0x80000000)) {

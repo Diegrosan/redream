@@ -38,8 +38,8 @@ typedef void (*mmio_write_string_cb)(void *, uint32_t, const uint8_t *, int);
                       uint8_t **ptr, mmio_read_cb *read,                   \
                       mmio_write_cb *write);
 
-DECLARE_ADDRESS_SPACE(sh4);
-DECLARE_ADDRESS_SPACE(arm7);
+DECLARE_ADDRESS_SPACE(sh4)
+DECLARE_ADDRESS_SPACE(arm7)
 
 struct memory *mem_create(struct dreamcast *dc);
 void mem_destroy(struct memory *mem);

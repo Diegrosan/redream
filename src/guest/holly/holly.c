@@ -183,10 +183,10 @@ static void (*g2_timers[4])(void *);
     sched_start_timer(sched, g2_timers[ch], hl, end);                 \
   }
 
-DEFINE_G2_DMA_TIMER(0);
-DEFINE_G2_DMA_TIMER(1);
-DEFINE_G2_DMA_TIMER(2);
-DEFINE_G2_DMA_TIMER(3);
+DEFINE_G2_DMA_TIMER(0)
+DEFINE_G2_DMA_TIMER(1)
+DEFINE_G2_DMA_TIMER(2)
+DEFINE_G2_DMA_TIMER(3)
 
 static void (*g2_timers[4])(void *) = {
     &holly_g2_dma_timer_channel0, &holly_g2_dma_timer_channel1,
@@ -278,7 +278,6 @@ static uint32_t *holly_interrupt_status(struct holly *hl,
 }
 
 static int holly_init(struct device *dev) {
-  struct holly *hl = (struct holly *)dev;
   return 1;
 }
 

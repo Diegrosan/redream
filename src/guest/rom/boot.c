@@ -31,17 +31,19 @@ static int boot_validate(struct boot *boot) {
 
   /* compare the rom's md5 against known good bios roms */
   MD5_CTX md5_ctx;
-  MD5_Init(&md5_ctx);
-  MD5_Update(&md5_ctx, boot->rom, sizeof(boot->rom));
+  _MD5_Init(&md5_ctx);
+  _MD5_Update(&md5_ctx, boot->rom, sizeof(boot->rom));
   char result[33];
-  MD5_Final(result, &md5_ctx);
+  _MD5_Final(result, &md5_ctx);
 
   for (int i = 0; i < ARRAY_SIZE(valid_bios_md5); ++i) {
     if (strcmp(result, valid_bios_md5[i]) == 0) {
       return 1;
     }
   }
-
+  
+  LOG_WARNING("unrecognized md5 hash: %s", result);
+  
   return 0;
 }
 

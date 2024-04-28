@@ -2,7 +2,7 @@
 #include "core/filesystem.h"
 #include "guest/maple/maple.h"
 #include "guest/maple/vmu_default.inc"
-
+#include "file/file_path.h"
 #define BLK_SIZE 512
 #define BLK_WORDS (512 >> 2)
 #define BLK_OFFSET(blk, phase) ((blk)*BLK_SIZE + (phase) * (BLK_SIZE >> 2))
@@ -218,7 +218,7 @@ struct maple_device *vmu_create(struct maple *mp, int port) {
   snprintf(vmu->filename, sizeof(vmu->filename),
            "%s" PATH_SEPARATOR "vmu%d.bin", appdir, port);
 
-  if (!fs_exists(vmu->filename)) {
+  if (!path_is_valid(vmu->filename)) {
     LOG_INFO("vmu_create initializing %s", vmu->filename);
 
     FILE *file = fopen(vmu->filename, "wb");
